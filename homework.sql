@@ -13,10 +13,6 @@ WHERE amount BETWEEN 3.99 and 5.99;
 
 
 -- 3. What film does the store have the most of? (search in inventory table)
-SELECT store_id, film_id
-FROM inventory;
-ORDER BY inventory_id DESC;
---- film_id 1000 
 SELECT *
 FROM inventory;
 -- shows all the films in each store
