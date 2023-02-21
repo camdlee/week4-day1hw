@@ -42,6 +42,8 @@ FROM inventory
 GROUP BY film_id
 HAVING COUNT(inventory_id) > 7;
 
+---Answer: There are a bunch of movies with 8 copies, which is the most of any film. 
+
 
 -- 4. How many customers have the last name ‘William’?
 SELECT first_name, last_name
@@ -108,13 +110,19 @@ WHERE customer_id BETWEEN 380 AND 430
 GROUP BY amount, customer_id;
 --- shows list of customer_id with the amounts they've paid and the # of movies they've paid for each amount
 
-SELECT customer_id, amount, COUNT(rental_id)
+SELECT customer_id, amount, COUNT(rental_id) AS rental_count
 FROM payment
 WHERE customer_id BETWEEN 380 AND 430
 GROUP BY amount, customer_id
 HAVING COUNT(rental_id) > 250;
 --- Answer: No payment ids had rentals numbers above 250 for customers between 380-430
 
+SELECT COUNT(amount), amount
+FROM payment
+WHERE customer_id BETWEEN 380 AND 430
+GROUP BY amount
+HAVING COUNT(amount) > 250;
+--- Answer: 3 payment amounts have num of rentals above 250 for customers between 380 and 430
 
 -- 10. Within the film table, how many rating categories are there? And what rating has the most
 -- movies total?
